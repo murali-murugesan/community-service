@@ -1,11 +1,14 @@
+'use strict'
+
 const Router = require('restify-router').Router;
 const routerInstance = new Router();
 const https = require('https');
 const config = require('../config/default');
+const userService = require('../services/users');
 
 routerInstance.post("/signup", (req, res) => {
-  let userDetails = req.body;
-  res.send(userDetails);
+  userService.signup(req.body);
+  res.send('User created successfully');
 });
 
 routerInstance.post("/username",(req, res) => {
@@ -13,10 +16,6 @@ routerInstance.post("/username",(req, res) => {
 });
 
 routerInstance.post("/forgot",(req, res) => {
-
-});
-
-routerInstance.post("/reset",(req, res) => {
 
 });
 
