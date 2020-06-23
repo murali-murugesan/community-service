@@ -3,7 +3,7 @@
 const Router = require('restify-router').Router;
 const routerInstance = new Router();
 const https = require('https');
-const config = require('../config/default');
+const {data} = require('../config/default');
 const userService = require('../services/users');
 
 routerInstance.post("/signup", (req, res) => {
@@ -11,18 +11,18 @@ routerInstance.post("/signup", (req, res) => {
   res.send('User created successfully');
 });
 
-routerInstance.post("/username",(req, res) => {
+routerInstance.post("/username", (req, res) => {
   //verify in db username exists
 });
 
-routerInstance.post("/forgot",(req, res) => {
+routerInstance.post("/forgot", (req, res) => {
 
 });
 
 routerInstance.get("/userType", (req, res) => {
-  https.get(config.url + '/userType', (resp) => {
-    resp.on('data', (data) => {
-      res.send(JSON.parse(data));
+  https.get(data.url + '/userType', (resp) => {
+    resp.on('data', (result) => {
+      res.send(JSON.parse(result));
     });
   }).on('error', (e) => {
     console.error(`Got error: ${e.message}`);

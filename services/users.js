@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user')
 const config = require('../config/default');
 
-mongoose.connect(`mongodb://localhost:27017/${config.service.id}`, {
+mongoose.connect(`${config.settings.mongodbUrl}/${config.service.id}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
